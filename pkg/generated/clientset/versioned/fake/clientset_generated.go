@@ -20,8 +20,8 @@ package fake
 
 import (
 	clientset "github.com/faizan82/controllers/cnat-controller/pkg/generated/clientset/versioned"
-	samplecontrollerv1alpha1 "github.com/faizan82/controllers/cnat-controller/pkg/generated/clientset/versioned/typed/cnatcontroller/v1alpha1"
-	fakesamplecontrollerv1alpha1 "github.com/faizan82/controllers/cnat-controller/pkg/generated/clientset/versioned/typed/cnatcontroller/v1alpha1/fake"
+	cnatcontrollerv1alpha1 "github.com/faizan82/controllers/cnat-controller/pkg/generated/clientset/versioned/typed/cnatcontroller/v1alpha1"
+	fakecnatcontrollerv1alpha1 "github.com/faizan82/controllers/cnat-controller/pkg/generated/clientset/versioned/typed/cnatcontroller/v1alpha1/fake"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/discovery"
@@ -76,7 +76,7 @@ func (c *Clientset) Tracker() testing.ObjectTracker {
 
 var _ clientset.Interface = &Clientset{}
 
-// SamplecontrollerV1alpha1 retrieves the SamplecontrollerV1alpha1Client
-func (c *Clientset) SamplecontrollerV1alpha1() samplecontrollerv1alpha1.SamplecontrollerV1alpha1Interface {
-	return &fakesamplecontrollerv1alpha1.FakeSamplecontrollerV1alpha1{Fake: &c.Fake}
+// CnatcontrollerV1alpha1 retrieves the CnatcontrollerV1alpha1Client
+func (c *Clientset) CnatcontrollerV1alpha1() cnatcontrollerv1alpha1.CnatcontrollerV1alpha1Interface {
+	return &fakecnatcontrollerv1alpha1.FakeCnatcontrollerV1alpha1{Fake: &c.Fake}
 }
