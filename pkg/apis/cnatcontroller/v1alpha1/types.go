@@ -23,32 +23,41 @@ import (
 // +genclient
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// Foo is a specification for a Foo resource
-type Foo struct {
+const (
+	// PhasePending indicates no action on resource has been performed yet
+	PhasePending = "PENDING"
+	// PhaseRunning denotes an action being performed through cr
+	PhaseRunning = "RUNNING"
+	// PhaseDone denotes completion
+	PhaseDone = "DONE"
+)
+
+// At is a specification for a At resource
+type At struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   FooSpec   `json:"spec"`
-	Status FooStatus `json:"status"`
+	Spec   AtSpec   `json:"spec"`
+	Status AtStatus `json:"status"`
 }
 
-// FooSpec is the spec for a Foo resource
-type FooSpec struct {
-	DeploymentName string `json:"deploymentName"`
-	Replicas       *int32 `json:"replicas"`
+// AtSpec is the spec for a At resource
+type AtSpec struct {
+	Schedule string `json:"schedule"`
+	Command  string `json:"command"`
 }
 
-// FooStatus is the status for a Foo resource
-type FooStatus struct {
-	AvailableReplicas int32 `json:"availableReplicas"`
+// AtStatus is the status for a At resource
+type AtStatus struct {
+	Phase string `json:"phase"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// FooList is a list of Foo resources
-type FooList struct {
+// AtList is a list of At resources
+type AtList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata"`
 
-	Items []Foo `json:"items"`
+	Items []At `json:"items"`
 }
