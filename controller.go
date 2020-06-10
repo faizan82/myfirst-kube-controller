@@ -55,8 +55,9 @@ type Controller struct {
 
 // NewController returns pointer to an initialized controller
 func NewController(
-	cnatClientset clientset.Interface,
 	kubeClientset kubernetes.Interface,
+	cnatClientset clientset.Interface,
+
 	atInformer informers.AtInformer,
 	podInformer corev1informer.PodInformer) *Controller {
 
